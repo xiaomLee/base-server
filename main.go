@@ -1,22 +1,22 @@
 package main
 
 import (
+	"base-server/common"
+	"base-server/config"
+	"base-server/logger"
+	"base-server/router"
 	"context"
 	"net/http"
 	"time"
-	"ws-gateway/common"
-	"ws-gateway/config"
-	"ws-gateway/logger"
-	"ws-gateway/router"
 
 	"github.com/judwhite/go-svc/svc"
 )
 
-type GatewayWs struct {
+type BaseServer struct {
 	server *http.Server
 }
 
-func (s *GatewayWs) Init(env svc.Environment) error {
+func (s *BaseServer) Init(env svc.Environment) error {
 	config.InitConfig()
 	println("RunMode:", config.CURMODE)
 	for key, val := range config.GetSection("system") {
@@ -62,7 +62,7 @@ func (s *GatewayWs) Init(env svc.Environment) error {
 	return nil
 }
 
-func (s *GatewayWs) Start() error {
+func (s *BaseServer) Start() error {
 	s.server = &http.Server{
 		Addr:    ":8087",
 		Handler: router.NewEngine(),
@@ -79,7 +79,7 @@ func (s *GatewayWs) Start() error {
 	return nil
 }
 
-func (s *GatewayWs) Stop() error {
+func (s *BaseServer) Stop() error {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := s.server.Shutdown(ctx); err != nil {
@@ -94,7 +94,7 @@ func (s *GatewayWs) Stop() error {
 }
 
 func main() {
-	if err := svc.Run(&GatewayWs{}); err != nil {
+	if err := svc.Run(&BaseServer{}); err != nil {
 		println(err.Error())
 	}
 }

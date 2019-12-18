@@ -1,9 +1,9 @@
 package common
 
 import (
+	"base-server/logger"
 	"sync"
 	"time"
-	"ws-gateway/logger"
 
 	"github.com/streadway/amqp"
 )

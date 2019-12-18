@@ -1,7 +1,7 @@
 package router
 
 import (
-	"ws-gateway/middleware"
+	"base-server/middleware"
 
 	"github.com/gin-gonic/gin"
 )
