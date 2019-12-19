@@ -32,6 +32,10 @@ do
 
         nohup $BIN > $STDLOG 2>&1 &
 
+        # sleep 2s
+        echo "wait..."
+        sleep 2
+
         ID=$(/usr/sbin/pidof "$BIN")
         if [[ "$ID" ]] ; then
             echo "service started $ID"
