@@ -28,7 +28,7 @@ do
         echo "service still running...wait"
         sleep 0.1
     else
-        echo "Starting service..."
+        echo "Starting service nohup $BIN > $STDLOG 2>&1 &"
 
         nohup $BIN > $STDLOG 2>&1 &
 
