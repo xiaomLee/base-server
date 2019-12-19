@@ -5,9 +5,11 @@ STDLOG=output.log
 
 RUNMODE=dev
 
-if [["$1"]]; then
+if [[ "$1" ]]; then
     RUNMODE=$1
 fi
+
+echo "export RUNMODE=$RUNMODE"
 
 export RUNMODE=$RUNMODE
 
@@ -29,7 +31,15 @@ do
         echo "Starting service..."
 
         nohup $BIN > $STDLOG 2>&1 &
-        echo "service started"
+
+        ID=$(/usr/sbin/pidof "$BIN")
+        if [[ "$ID" ]] ; then
+            echo "service started $ID"
+        else
+            echo "service not start"
+            cat $STDLOG
+        fi
+
         break
     fi
 done
