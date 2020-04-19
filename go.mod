@@ -19,4 +19,5 @@ require (
 	github.com/streadway/amqp v0.0.0-20190827072141-edfb9018d271
 	github.com/tebeka/strftime v0.1.3 // indirect
 	github.com/widuu/goini v0.0.0-20180603013956-56a38bd2e09b
+	golang.org/x/net v0.0.0-20190311183353-d8887717615a
 )
