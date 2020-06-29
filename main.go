@@ -7,9 +7,11 @@ import (
 	"base-server/router"
 	"context"
 	"net/http"
+	"runtime"
 	"time"
 
 	"github.com/judwhite/go-svc/svc"
+	_ "net/http/pprof"
 )
 
 type BaseServer struct {
@@ -17,6 +19,8 @@ type BaseServer struct {
 }
 
 func (s *BaseServer) Init(env svc.Environment) error {
+	runtime.GOMAXPROCS(1)
+
 	config.InitConfig()
 	println("RunMode:", config.CURMODE)
 	for key, val := range config.GetSection("system") {
@@ -74,6 +78,7 @@ func (s *BaseServer) Start() error {
 			}
 		}
 	}()
+	go http.ListenAndServe(":9999", nil)
 	println("http service start")
 
 	return nil

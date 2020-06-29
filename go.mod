@@ -20,4 +20,5 @@ require (
 	github.com/tebeka/strftime v0.1.3 // indirect
 	github.com/widuu/goini v0.0.0-20180603013956-56a38bd2e09b
 	github.com/xiezhenye/gls v0.0.0-20190313113435-d174a9e3729f // indirect
+	golang.org/x/net v0.0.0-20190923162816-aa69164e4478
 )
