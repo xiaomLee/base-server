@@ -97,4 +97,6 @@ func main() {
 	if err := svc.Run(&BaseServer{}); err != nil {
 		println(err.Error())
 	}
+
+	http.Get("www.baidu.com")
 }

@@ -65,7 +65,6 @@ func RequestStart(c *gin.Context) {
 	entry.Info("request_in")
 
 	//fmt.Printf("%v url=%s||method=%s||param=%v \n", time.Now(), c.Request.URL, c.Request.Method, c.Request.Form)
-	c.Next()
 }
 
 func genRequestId() string {
