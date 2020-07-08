@@ -1,7 +1,7 @@
 基于gin框架的web服务构建模板
 涉及常用的mysql redis mq logger config之类的封装
 
-# base-server
+# web-server
 
 用于快速构建web服务
 
