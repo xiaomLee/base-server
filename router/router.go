@@ -4,9 +4,10 @@ import (
 	"base-server/middleware"
 	"time"
 
-	"github.com/gin-gonic/gin"
 	"runtime/pprof"
 	"runtime/trace"
+
+	"github.com/gin-gonic/gin"
 )
 
 func NewEngine() *gin.Engine {
@@ -20,13 +21,15 @@ func NewEngine() *gin.Engine {
 
 	// router here
 	engine.Any("/", HealthCheck)
-	engine.Any("/debug/goroutine", goroutineProfile)
-	engine.Any("/debug/thread", threadProfile)
-	engine.Any("/debug/heap", heapProfile)
-	engine.Any("/debug/allocs", allocsProfile)
-	engine.Any("/debug/block", blockProfile)
-	engine.Any("/debug/mutex", mutexProfile)
-	engine.Any("/debug/trace", traceOut)
+
+	v1 := engine.Group("/debug")
+	v1.Any("/goroutine", goroutineProfile)
+	v1.Any("/thread", threadProfile)
+	v1.Any("/heap", heapProfile)
+	v1.Any("/allocs", allocsProfile)
+	v1.Any("/block", blockProfile)
+	v1.Any("/mutex", mutexProfile)
+	v1.Any("/trace", traceOut)
 	return engine
 }
 
