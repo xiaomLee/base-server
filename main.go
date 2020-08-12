@@ -78,8 +78,11 @@ func (s *BaseServer) Start() error {
 			}
 		}
 	}()
+	println("http service start, listen on 8087")
+
 	go http.ListenAndServe(":9999", nil)
-	println("http service start")
+	println("pprof service start, listen on 9999")
+
 
 	return nil
 }
